@@ -1,0 +1,9 @@
+POST https://httpbin.org/post
+Content-Type: application/json
+
+{
+  "producto": "Laptop",
+  "precio": 15000,
+  "cantidad": 2,
+  "categoria": "Tecnologia"
+}
