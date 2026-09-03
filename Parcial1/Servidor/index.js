@@ -8,6 +8,14 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(morgan("dev"));
 
+let counter = 0;
+
+app.use((req, res, next) => {
+  counter++;
+  console.log(`Count: ${counter}`);
+  next();
+});
+
 app.use(usersRoute);
 
 app.listen(PORT, () => {
