@@ -9,6 +9,11 @@ const users = [
 
 let nextId = 3;
 
+// Vista de usuarios
+router.get("/", (req, res) => {
+  res.render("index", { users });
+});
+
 // GET all users
 router.get("/api/users", (req, res) => {
   res.json(users);
