@@ -1,5 +1,6 @@
 import express from "express";
 import usersRoute from "./routes/userRoutes.js";
+import uploadRoute from "./routes/uploadRoutes.js";
 import morgan from "morgan";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 });
 
 app.use(usersRoute);
+app.use(uploadRoute);
 
 app.listen(PORT, () => {
   console.log(`API running at http://localhost:${PORT}`);
