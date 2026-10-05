@@ -1,10 +1,13 @@
 import { Router } from "express";
 import multer from "multer";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const router = Router();
-const upload = multer({ dest: "uploads/" });
+const uploadsDirectory = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../uploads");
+const upload = multer({ dest: uploadsDirectory });
 
-router.post("/api/upload", upload.single("file"), (req, res) => {
+router.post("/upload", upload.single("file"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "A file is required in the 'file' field" });
   }

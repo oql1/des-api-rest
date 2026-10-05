@@ -1,3 +1,46 @@
-GET /api/users HTTP/1.1
-Host: localhost:3000
-Authorization: Basic admin:supersecret
+@baseUrl = http://localhost:3000
+@apiKey = replace-with-your-api-key
+@bearerToken = replace-with-your-bearer-token
+
+### Usuarios sin autenticación
+GET {{baseUrl}}/api/public/users
+
+### Usuarios protegidos con Basic
+# Sustituye el valor por Base64 de "BASIC_AUTH_USERNAME:BASIC_AUTH_PASSWORD".
+GET {{baseUrl}}/api/auth/basic/users
+Authorization: Basic <base64-credentials>
+
+### Usuarios protegidos con API Key
+GET {{baseUrl}}/api/auth/apikey/users
+X-API-Key: {{apiKey}}
+
+### Usuarios protegidos con Bearer
+GET {{baseUrl}}/api/auth/bearer/users
+Authorization: Bearer {{bearerToken}}
+
+### Obtener un JWT
+# Usa AUTH_USERNAME y AUTH_PASSWORD configurados en .env.
+# @name login
+POST {{baseUrl}}/api/auth/jwt/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "change-this-password"
+}
+
+### Usuarios protegidos con JWT Bearer
+GET {{baseUrl}}/api/auth/jwt/users
+Authorization: Bearer {{login.response.body.accessToken}}
+
+### Subir un archivo con API Key
+POST {{baseUrl}}/api/auth/apikey/upload
+X-API-Key: {{apiKey}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="ejemplo.txt"
+Content-Type: text/plain
+
+Contenido de ejemplo
+--WebAppBoundary--
