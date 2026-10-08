@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { createServer } from "node:https";
 import express from "express";
 import morgan from "morgan";
 import path from "node:path";
@@ -39,7 +41,12 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`API running at http://localhost:${PORT}`);
+const httpsOptions = {
+  key: readFileSync(path.join(currentDirectory, "ssl", "key.pem")),
+  cert: readFileSync(path.join(currentDirectory, "ssl", "cert.pem")),
+};
+
+createServer(httpsOptions, app).listen(PORT, () => {
+  console.log(`API running at https://localhost:${PORT}`);
   console.log("Routes ready: /api/public, /api/auth/basic, /api/auth/apikey, /api/auth/bearer, /api/auth/jwt");
 });
