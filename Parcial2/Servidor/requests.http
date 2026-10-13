@@ -5,6 +5,27 @@
 ### Usuarios sin autenticación
 GET {{baseUrl}}/api/public/users
 
+### Crear usuario (name, email y age obligatorios; phone opcional)
+POST {{baseUrl}}/api/public/users
+Content-Type: application/json
+
+{
+  "name": "Carla",
+  "email": "carla@example.com",
+  "age": 24,
+  "phone": "+573001234567"
+}
+
+### Datos inválidos: devuelve 400 con detalles
+POST {{baseUrl}}/api/public/users
+Content-Type: application/json
+
+{
+  "name": " ",
+  "email": "correo-invalido",
+  "age": -1
+}
+
 ### Usuarios protegidos con Basic
 # Sustituye el valor por Base64 de "BASIC_AUTH_USERNAME:BASIC_AUTH_PASSWORD".
 GET {{baseUrl}}/api/auth/basic/users

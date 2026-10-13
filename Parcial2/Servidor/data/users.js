@@ -1,6 +1,6 @@
 export const users = [
-  { id: 1, name: "Alice" },
-  { id: 2, name: "Bob" },
+  { id: 1, name: "Alice", email: "alice@example.com", age: 25 },
+  { id: 2, name: "Bob", email: "bob@example.com", age: 30 },
 ];
 
 let nextId = users.reduce((highestId, user) => Math.max(highestId, user.id), 0) + 1;
@@ -13,8 +13,8 @@ export function findUserById(id) {
   return users.find((user) => user.id === id);
 }
 
-export function createUser(name) {
-  const user = { id: nextId++, name };
+export function createUser(data) {
+  const user = { ...data, id: nextId++ };
   users.push(user);
   return user;
 }
