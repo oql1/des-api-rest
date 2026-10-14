@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const router = Router();
-const uploadsDirectory = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../uploads");
+const uploadsDirectory = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../../uploads");
 const upload = multer({ dest: uploadsDirectory });
 
 router.post("/upload", upload.single("file"), (req, res) => {

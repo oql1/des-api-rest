@@ -14,12 +14,13 @@ import apiRoutes from "./routes/shared/apiRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+const projectDirectory = path.resolve(currentDirectory, "..");
 
 app.use(express.json());
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
-app.set("views", path.join(currentDirectory, "views"));
+app.set("views", path.join(projectDirectory, "views"));
 
 // Cada prefijo aplica un solo método; las rutas de recursos vienen del mismo módulo compartido.
 app.use("/api/public", apiRoutes);
@@ -42,8 +43,8 @@ app.use((err, req, res, next) => {
 });
 
 const httpsOptions = {
-  key: readFileSync(path.join(currentDirectory, "ssl", "key.pem")),
-  cert: readFileSync(path.join(currentDirectory, "ssl", "cert.pem")),
+  key: readFileSync(path.join(projectDirectory, "ssl", "key.pem")),
+  cert: readFileSync(path.join(projectDirectory, "ssl", "cert.pem")),
 };
 
 createServer(httpsOptions, app).listen(PORT, () => {
