@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node --env-file=.env src/index.js",
     "dev": "node --watch --env-file=.env src/index.js",
+    "doc": "jsdoc -c jsdoc.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -33,6 +34,8 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "@types/jsonwebtoken": "^9.0.10"
+    "@types/jsonwebtoken": "^9.0.10",
+    "clean-jsdoc-theme": "^5.2.0",
+    "jsdoc": "^4.0.5"
   }
 }

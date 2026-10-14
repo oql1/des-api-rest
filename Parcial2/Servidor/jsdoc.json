@@ -1,0 +1,9 @@
+{
+  "source": { "include": ["./src", "./README.md"] },
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "destination": "doc",
+    "recurse": true,
+    "template": "node_modules/clean-jsdoc-theme/dist"
+  }
+}
