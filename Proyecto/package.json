@@ -1,0 +1,39 @@
+{
+  "name": "proyecto-api",
+  "version": "1.0.0",
+  "description": "API REST del proyecto final con autenticación JWT",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node --env-file=.env src/index.js",
+    "dev": "node --watch --env-file=.env src/index.js",
+    "doc": "jsdoc -c jsdoc.json",
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.23.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@11.23.0",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-jwt": "^8.5.1",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.12.0",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "clean-jsdoc-theme": "^5.2.0",
+    "jsdoc": "^4.0.5"
+  }
+}

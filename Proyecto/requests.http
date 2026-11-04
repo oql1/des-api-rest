@@ -1,0 +1,58 @@
+@baseUrl = http://localhost:3000
+
+### Registro público (no requiere JWT)
+# @name register
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Diego",
+  "email": "diego@example.com",
+  "password": "Diego123!",
+  "age": 22
+}
+
+### Iniciar sesión con el usuario registrado
+# @name registeredLogin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "diego@example.com",
+  "password": "Diego123!"
+}
+
+### Obtener un JWT con el correo y contraseña de un usuario
+# @name login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "Alice123!"
+}
+
+### Listar usuarios
+GET {{baseUrl}}/api/users
+Authorization: Bearer {{login.response.body.accessToken}}
+
+### Consultar un usuario
+GET {{baseUrl}}/api/users/1
+Authorization: Bearer {{login.response.body.accessToken}}
+
+### Datos inválidos: devuelve 400 con detalles
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": " ",
+  "email": "correo-invalido",
+  "age": -1
+}
+
+### Eliminar un usuario
+DELETE {{baseUrl}}/api/users/{{register.response.body.id}}
+Authorization: Bearer {{login.response.body.accessToken}}
+
+### Sin JWT: devuelve 401
+GET {{baseUrl}}/api/users
