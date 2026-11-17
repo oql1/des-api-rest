@@ -34,6 +34,7 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "clean-jsdoc-theme": "^5.2.0",
-    "jsdoc": "^4.0.5"
+    "jsdoc": "^4.0.5",
+    "supertest": "^7.3.2"
   }
 }

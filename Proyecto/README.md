@@ -76,4 +76,4 @@ Ejecuta `pnpm doc` para generar la documentación en `docs/`.
 
 ## Pruebas
 
-Ejecuta `pnpm test` para verificar el registro, login, JWT, contraseñas y creación de usuarios.
+Ejecuta `pnpm test` para probar el registro, el login y la consulta protegida con Supertest.
